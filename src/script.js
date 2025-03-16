@@ -6,6 +6,7 @@ document.getElementById('rating-form').addEventListener('submit', function(event
     const ramenName = document.getElementById('ramen-name').value.trim();
     const ramenRating = document.getElementById('ramen-rating').value.trim();
     const comments = document.getElementById('comments').value.trim();
+    const ramenImage = document.querySelector(`img[alt="${ramenName} Ramen"]`).src; // Get the image source based on ramen name
 
     if (userName && restaurantName && ramenName && ramenRating) {
         const listItem = document.createElement('li');
@@ -14,6 +15,12 @@ document.getElementById('rating-form').addEventListener('submit', function(event
             Comments: ${comments ? comments : 'None'}
         `;
         document.getElementById('ratings-list').appendChild(listItem);
+
+        // Update the last ramen display section
+        document.getElementById('last-ramen-image').src = ramenImage; // Set the image source
+        document.getElementById('last-ramen-image').style.display = 'block'; // Show the image
+        document.getElementById('last-ramen-name').innerText = ramenName; // Set the ramen name
+        document.getElementById('last-comment').innerText = comments ? comments : 'No comments'; // Set the last comment
 
         // Clear input fields
         document.getElementById('user-name').value = '';
